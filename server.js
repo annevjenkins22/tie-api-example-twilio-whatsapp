@@ -84,9 +84,10 @@ function handleAPIMessages(sessionHandler) {
             req.on('end', async function () {
      const triggerInput = req.query["userInput"];   
      var post ;
-     var from ;
      var userInput;
      var apiKey;
+     var headerApiKey;     
+
      if(triggerInput===undefined || triggerInput===null) {
     post = JSON.parse(body);
          from = post.from;
@@ -96,14 +97,15 @@ function handleAPIMessages(sessionHandler) {
       if(userInput===undefined || userInput===null || userInput=="") {
       userInput = triggerInput;
       apiKey =  req.query["apiKey"];   
-      from = req.query["from"];   
+      headerApiKey = req.headers["apiKey"];   
+      console.log(`headerApiKey from call: ${headerApiKey}`);
       console.log(`UPD3 from: ${from}`);
       console.log(`UPD4 userInput: ${userInput}`);
     }
      if(apiKey===undefined || apiKey===null || apiKey=="") {
          apiKey="";
      }
-    console.log(`from: ${from}`);
+     
     console.log(`body: ${body}`);
    
     // get message from user
