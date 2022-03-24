@@ -99,6 +99,9 @@ function handleAPIMessages(sessionHandler) {
       from = req.query["from"];   
       console.log(`UPD3 from: ${from}`);
       console.log(`UPD4 userInput: ${userInput}`);
+          if(userInput===undefined || userInput===null || userInput=="") {
+              userInput="hello";
+          }
     }
      if(apiKey===undefined || apiKey===null || apiKey=="") {
          apiKey="";
