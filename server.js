@@ -91,7 +91,8 @@ function handleAPIMessages(sessionHandler) {
      var challenge  = req.query["challenge"];   
      if((triggerInput===undefined || triggerInput===null) && body!=null && body!==undefined) {
          console.log("trying to parse body" );  
-    post = JSON.parse(body);
+         try {
+         post = JSON.parse(body);
          console.log("trying to parse body 2" );  
          from = post.from;
          console.log("trying to parse body 3" );  
@@ -99,6 +100,10 @@ function handleAPIMessages(sessionHandler) {
          apiKey = post.apiKey;
          challenge=post.challenge;
           console.log("trying to parse body 4" );  
+         }
+         catch(err) { 
+           console.log(err.message);   
+         }
      }
       if(userInput===undefined || userInput===null || userInput=="") {
       userInput = triggerInput;
