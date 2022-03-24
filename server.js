@@ -92,10 +92,13 @@ function handleAPIMessages(sessionHandler) {
      if((triggerInput===undefined || triggerInput===null) && body!=null && body!==undefined) {
          console.log("trying to parse body" );  
     post = JSON.parse(body);
+         console.log("trying to parse body 2" );  
          from = post.from;
+         console.log("trying to parse body 3" );  
          userInput = post.userInput;
          apiKey = post.apiKey;
          challenge=post.challenge;
+          console.log("trying to parse body 4" );  
      }
       if(userInput===undefined || userInput===null || userInput=="") {
       userInput = triggerInput;
