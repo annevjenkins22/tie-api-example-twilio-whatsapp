@@ -149,7 +149,7 @@ function handleAPIMessages(sessionHandler) {
      
     console.log(`my session ID: ${teneoSessionId}`);
     // send input to engine using stored sessionid and retreive response:
-    teneoResponse = await teneoApi.sendInput(teneoSessionId, { 'text': userInput, 'channel': 'cai-connector', 'apiKey': apiKey, 'challenge': challenge });
+    teneoResponse = await teneoApi.sendInput(teneoSessionId, { 'text': userInput, 'channel': 'cai-connector', 'apiKey': apiKey });
     console.log(`teneoResponse: ${teneoResponse.output.text}`);
     console.log(_stringify(teneoResponse));
     teneoSessionId = teneoResponse.sessionId;
@@ -159,7 +159,13 @@ function handleAPIMessages(sessionHandler) {
 
     // return teneo answer to twilio
      res.writeHead(200, { 'Content-Type': 'text/json' });
-    res.end(_stringify(teneoResponse));
+     if(challenge=="") {
+        res.end(_stringify(teneoResponse));
+     }
+     else {
+         res.end(challenge);
+     }
+                
    //return teneoResponse;
   });
 }
