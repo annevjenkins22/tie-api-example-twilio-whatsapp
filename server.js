@@ -82,6 +82,7 @@ function handleAPIMessages(sessionHandler) {
             });
 
             req.on('end', async function () {
+      console.log("IN ASYNC" );          
      const triggerInput = req.query["userInput"];   
      var post ;
      var from ;
