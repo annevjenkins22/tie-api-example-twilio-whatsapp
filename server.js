@@ -89,6 +89,7 @@ function handleAPIMessages(sessionHandler) {
      var userInput;
      var apiKey;
      var challenge  = req.query["challenge"];   
+     var messageId="";
      if((triggerInput===undefined || triggerInput===null) && body!=null && body!==undefined) {
          console.log("trying to parse body" );  
          try {
@@ -104,6 +105,11 @@ function handleAPIMessages(sessionHandler) {
          catch(err) { 
            console.log(err.message);   
          }
+         if(post.deltas!=null && post.deltas!==undefined) {
+             userInput="Dealer test drive response";
+             messageId= post.deltas[0].object_data.id;
+         }
+             
      }
       if(userInput===undefined || userInput===null || userInput=="") {
       userInput = triggerInput;
@@ -112,6 +118,7 @@ function handleAPIMessages(sessionHandler) {
       console.log(`UPD3 from: ${from}`);
       console.log(`UPD4 userInput: ${userInput}`);
           if(userInput===undefined || userInput===null || userInput=="") {
+              
               userInput="hello";
           }
     }
@@ -149,7 +156,7 @@ function handleAPIMessages(sessionHandler) {
      
     console.log(`my session ID: ${teneoSessionId}`);
     // send input to engine using stored sessionid and retreive response:
-    teneoResponse = await teneoApi.sendInput(teneoSessionId, { 'text': userInput, 'channel': 'cai-connector', 'apiKey': apiKey });
+    teneoResponse = await teneoApi.sendInput(teneoSessionId, { 'text': userInput, 'channel': 'cai-connector', 'apiKey': apiKey, 'messageId' : messageId });
     console.log(`teneoResponse: ${teneoResponse.output.text}`);
     console.log(_stringify(teneoResponse));
     teneoSessionId = teneoResponse.sessionId;
