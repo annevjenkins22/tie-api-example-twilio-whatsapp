@@ -105,6 +105,9 @@ function handleAPIMessages(sessionHandler) {
               userInput="hello";
           }
     }
+     if(challenge===undefined || challenge===null || challenge=="") {
+         challenge="";
+     }           
      if(apiKey===undefined || apiKey===null || apiKey=="") {
          apiKey="";
      }
