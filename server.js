@@ -87,7 +87,7 @@ function handleAPIMessages(sessionHandler) {
      var from ;
      var userInput;
      var apiKey;
-     if(triggerInput===undefined || triggerInput===null) {
+     if((triggerInput===undefined || triggerInput===null) && body!=null && body!==undefined) {
     post = JSON.parse(body);
          from = post.from;
          userInput = post.userInput;
