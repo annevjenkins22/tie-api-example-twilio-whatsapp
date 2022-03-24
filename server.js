@@ -90,6 +90,7 @@ function handleAPIMessages(sessionHandler) {
      var apiKey;
      var challenge  = req.query["challenge"];   
      if((triggerInput===undefined || triggerInput===null) && body!=null && body!==undefined) {
+         console.log("trying to parse body" );  
     post = JSON.parse(body);
          from = post.from;
          userInput = post.userInput;
