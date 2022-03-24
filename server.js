@@ -105,7 +105,7 @@ function handleAPIMessages(sessionHandler) {
          catch(err) { 
            console.log(err.message);   
          }
-         if(post.deltas!=null && post.deltas!==undefined) {
+         if(post!=null && post!==undefined && post.deltas!=null && post.deltas!==undefined) {
              userInput="Dealer test drive response";
              messageId= post.deltas[0].object_data.id;
          }
